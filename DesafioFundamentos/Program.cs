@@ -6,12 +6,41 @@ Console.OutputEncoding = System.Text.Encoding.UTF8;
 decimal precoInicial = 0;
 decimal precoPorHora = 0;
 
-Console.WriteLine("Seja bem vindo ao sistema de estacionamento!\n" +
-                  "Digite o preço inicial:");
-precoInicial = Convert.ToDecimal(Console.ReadLine());
+while (precoInicial <= 0)
+{
+    Console.WriteLine(
+        "Seja bem vindo ao sistema de estacionamento!\n" + "Digite o preço inicial (maior que 0):"
+    );
+    try
+    {
+        precoInicial = Convert.ToDecimal(Console.ReadLine());
+        if (precoInicial <= 0)
+        {
+            Console.WriteLine("O preço inicial deve ser maior que 0. Tente novamente.");
+        }
+    }
+    catch (FormatException)
+    {
+        Console.WriteLine("Valor inválido. Por favor, insira um número válido.");
+    }
+}
 
-Console.WriteLine("Agora digite o preço por hora:");
-precoPorHora = Convert.ToDecimal(Console.ReadLine());
+while (precoPorHora <= 0)
+{
+    Console.WriteLine("Agora digite o preço por hora (maior que 0):");
+    try
+    {
+        precoPorHora = Convert.ToDecimal(Console.ReadLine());
+        if (precoPorHora <= 0)
+        {
+            Console.WriteLine("O preço por hora deve ser maior que 0. Tente novamente.");
+        }
+    }
+    catch (FormatException)
+    {
+        Console.WriteLine("Valor inválido. Por favor, insira um número válido.");
+    }
+}
 
 // Instancia a classe Estacionamento, já com os valores obtidos anteriormente
 Estacionamento es = new Estacionamento(precoInicial, precoPorHora);
